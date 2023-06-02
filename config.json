@@ -1,0 +1,38 @@
+{
+    "monitor path":{
+        "dir":"Y:/open",
+        "file":"Y:/open/open.txt"
+    },
+    "server path":{
+        "path1":{
+            "server":"/home/test/ssd/",
+            "windows":"y:/"
+        },
+        "path2":{
+            "server":"/home/test/",
+            "windows":"z:/"
+        }
+    },
+    "window command":{
+        "cmd_directory":{
+            "short":"",
+            "cmd":"start explorer "
+        },
+        "cmd_file":{
+            "short":"",
+            "cmd":"start notepad++  "
+        },
+        "cmd_in_vscode":{
+            "short":"vs",
+            "cmd":"\"C:/Program Files/Microsoft VS Code/bin/code.cmd\" "
+        },
+        "cmd_adb_push":{
+            "short":"push",
+            "cmd":"adb push "
+        },
+        "cmd_adb_reboot":{
+            "short":"reboot",
+            "cmd":"adb reboot "
+        }
+    }
+}
