@@ -1,38 +1,43 @@
 {
-    "monitor path":{
-        "dir":"Y:/open",
-        "file":"Y:/open/open.txt"
+    "MQTT config":{
+        "Server":"172.18.11.241",
+        "Port":"1883",
+        "KeepAliveSeconed":"10",
+        "Topic":"test"
     },
     "server path":{
         "path1":{
-            "server":"/home/test/ssd/",
-            "windows":"y:/"
-        },
-        "path2":{
             "server":"/home/test/",
-            "windows":"z:/"
+            "local":"\\\\172.18.11.242\\test\\"
         }
     },
-    "window command":{
-        "cmd_directory":{
-            "short":"",
-            "cmd":"start explorer "
+    "command":{
+        "cmd_d":{
+            "local cmd":"start explorer {file}"
         },
-        "cmd_file":{
-            "short":"",
-            "cmd":"start notepad++  "
+        "cmd_f":{
+            "local cmd":"start notepad++ {file}"
         },
-        "cmd_in_vscode":{
-            "short":"vs",
-            "cmd":"\"C:/Program Files/Microsoft VS Code/bin/code.cmd\" "
+        "cmd_vs":{
+            "local cmd":"\"C:/Program Files/Microsoft VS Code/bin/code.cmd\" {file}"
         },
-        "cmd_adb_push":{
-            "short":"push",
-            "cmd":"adb push "
+        "cmd_services":{
+            "local cmd":""
         },
-        "cmd_adb_reboot":{
-            "short":"reboot",
-            "cmd":"adb reboot "
+        "cmd_selinux":{
+            "local cmd":""
+        },
+        "cmd_apush":{
+            "local cmd":"adb push {file} {param}"
+        },
+        "cmd_areboot":{
+            "local cmd":"adb reboot "
+        },
+        "cmd_adb":{
+            "local cmd":"adb {param}"
+        },
+        "cmd_cfg":{
+            "local cmd":"fastboot flash cfg {file}"
         }
     }
 }
