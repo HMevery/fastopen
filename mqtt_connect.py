@@ -52,13 +52,13 @@ class mqtt_connect:
             
            
         #client.loop_stop()      
-        #client.disconnect()
+        client.disconnect()
         return 0
 
     def subscribe(self,server,port,keepalive,id,topic,callback):
         def on_message(client, userdata, msg):
             #print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-            callback(topic,msg.payload.decode())
+            callback(client,topic,msg.payload.decode())
 
         client = self.connect(server,port,keepalive,id)
         #client.loop_start()

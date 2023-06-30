@@ -3,41 +3,37 @@
         "Server":"172.18.11.241",
         "Port":"1883",
         "KeepAliveSeconed":"10",
-        "Topic":"test"
+        "Topic":"fastopen"
     },
-    "server path":{
-        "path1":{
-            "server":"/home/test/",
-            "local":"\\\\172.18.11.242\\test\\"
-        }
-    },
-    "command":{
-        "cmd_d":{
-            "local cmd":"start explorer {file}"
-        },
-        "cmd_f":{
-            "local cmd":"start notepad++ {file}"
-        },
-        "cmd_vs":{
-            "local cmd":"\"C:/Program Files/Microsoft VS Code/bin/code.cmd\" {file}"
-        },
-        "cmd_services":{
-            "local cmd":""
-        },
-        "cmd_selinux":{
-            "local cmd":""
-        },
-        "cmd_apush":{
-            "local cmd":"adb push {file} {param}"
-        },
-        "cmd_areboot":{
-            "local cmd":"adb reboot "
-        },
-        "cmd_adb":{
-            "local cmd":"adb {param}"
-        },
-        "cmd_cfg":{
-            "local cmd":"fastboot flash cfg {file}"
-        }
-    }
+    "server config":[
+        {"IP":"172.18.11.246","server":"","local":""},
+        {"IP":"","server":"/home/user/","local":"D:/"},
+        {"IP":"","server":"","local":""}
+    ],
+    "command":[
+        {"name":"d",         "execute":"start explorer {file}"},
+        {"name":"f",         "execute":"start notepad++ {file}"},
+        {"name":"vs",        "execute":"\"C:/Program Files/Microsoft VS Code/bin/code.cmd\" {file}"},
+        {"name":"services",  "execute":["adb remount",
+                                        "adb push TARGET_OUT/system/framework/services.jar.bprof",
+                                        "adb push TARGET_OUT/system/framework/services.jar.prof",
+                                        "adb push TARGET_OUT/system/framework/services.jar",
+                                        "adb push TARGET_OUT/system/framework/oat/arm/services.art",
+                                        "adb push TARGET_OUT/system/framework/oat/arm/services.odex",
+                                        "adb push TARGET_OUT/system/framework/oat/arm/services.vdex",
+                                        "adb shell stop",
+                                        "adb shell start"
+                                       ]},
+        {"name":"selinux",   "execute":["adb remount",
+                                        "adb push TARGET_OUT/system_ext/etc/selinux",
+                                        "adb push TARGET_OUT/system/etc/selinux",
+                                        "adb push TARGET_OUT/vendor/etc/selinux",
+                                        "adb reboot"
+                                       ]},
+        {"name":"apush",     "execute":["adb remount",
+                                        "adb push {file} {param}"
+                                       ]},
+        {"name":"areboot",   "execute":"adb reboot "},
+        {"name":"adb",       "execute":"adb {param}"}
+    ]
 }
