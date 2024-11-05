@@ -18,6 +18,13 @@
                                         "adb push TARGET_OUT/system/framework/services.jar.bprof",
                                         "adb push TARGET_OUT/system/framework/services.jar.prof",
                                         "adb push TARGET_OUT/system/framework/services.jar",
+                                        "adb shell stop",
+                                        "adb shell start"
+                                       ]},
+        {"name":"services11",  "execute":["adb remount",
+                                        "adb push TARGET_OUT/system/framework/services.jar.bprof",
+                                        "adb push TARGET_OUT/system/framework/services.jar.prof",
+                                        "adb push TARGET_OUT/system/framework/services.jar",
                                         "adb push TARGET_OUT/system/framework/oat/arm/services.art",
                                         "adb push TARGET_OUT/system/framework/oat/arm/services.odex",
                                         "adb push TARGET_OUT/system/framework/oat/arm/services.vdex",
@@ -28,8 +35,16 @@
                                         "adb push TARGET_OUT/system_ext/etc/selinux",
                                         "adb push TARGET_OUT/system/etc/selinux",
                                         "adb push TARGET_OUT/vendor/etc/selinux",
+                                        "adb push TARGET_OUT/product/etc/selinux",
                                         "adb reboot"
                                        ]},
+        {"name":"selinux11", "execute":["adb remount",
+                                        "adb push TARGET_OUT/system/system_ext/etc/selinux",
+                                        "adb push TARGET_OUT/system/etc/selinux",
+                                        "adb push TARGET_OUT/vendor/etc/selinux",
+                                        "adb push TARGET_OUT/product/etc/selinux",
+                                        "adb reboot"
+                                       ]},                               
         {"name":"apush",     "execute":["adb remount",
                                         "adb push {file} {param}"
                                        ]},

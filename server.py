@@ -22,7 +22,7 @@ def server_install():
     with open(shell_name,'w') as f:
         f.writelines('#!/bin/bash\n')
         f.writelines('FILE=$(pwd)/$2\n')
-        index = 0
+        '''index = 0
         while True:
             commend = config.get_first_cmd_from_index(index)
             index = index +1
@@ -45,7 +45,34 @@ def server_install():
             f.writelines(f'    python3 {run_name} -c {commend} {file} {param} \n')    
             f.writelines(f'fi\n')
 
-            alias = alias +f'alias {commend}=\'{shell_name} {commend} \'\n'          
+            alias = alias +f'alias {commend}=\'{shell_name} {commend} \'\n'  '''
+        commend = config.get_cmd_name_all()
+        for i in range(len(commend)):
+            local = config.get_cmd_execute(commend[i])
+            if local == None:
+                break
+            file = ''
+            param = ''
+            flag = '$2'
+            if type(local) == list:
+                for a in range(len(local)):
+                    if local[a].find('{file}') != -1:
+                        file = '-f $FILE '
+                        flag = ''
+                    if local[a].find('{param}') != -1:
+                        param = f'-p {flag} $3 $4 $5 $6'
+            elif type(local) == str:    
+                if local.find('{file}') != -1:
+                    file = '-f $FILE '
+                    flag = ''
+                if local.find('{param}') != -1:
+                    param = f'-p {flag} $3 $4 $5 $6'
+
+            f.writelines(f'if [ {commend[i]} = $1 ];then\n')
+            f.writelines(f'    python3 {run_name} -c {commend[i]} {file} {param} \n')    
+            f.writelines(f'fi\n')
+
+            alias = alias +f'alias {commend[i]}=\'{shell_name} {commend[i]} \'\n'
     print(alias)  
 
 def usage():
