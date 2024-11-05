@@ -19,10 +19,22 @@ def push(path):
         p = src
         if 'adb push ' in src:
             p = src[len('adb push '):]
+        if p.endswith(" "):
+            p = p.rstrip()
+        #print(f"p:{p}")
+        #print(os.path.isdir(p))
         if os.path.isdir(p):
-            t = src.rfind("/")
-            dest = src[index:t+1]
+            tmp = src
+            if tmp.endswith(" "):
+                tmp = tmp.rstrip()
+            if tmp.endswith("/"):
+                tmp = tmp[:-1]
+            #print(f"tmp:{tmp}")    
+            t = tmp.rfind("/")
+            dest = tmp[index:t+1]
+            #print(f"dir:{dest}")
         else:    
             dest = src[index:]
+            
         data = f"{src} {dest}"
     return data

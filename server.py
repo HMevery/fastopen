@@ -176,14 +176,14 @@ def format_execute(args,indata):
     file_path = args.file_path  
 
     indata = indata.format(file = file_path,param = inparam)  
-    
+    #print(f"indata:{indata}")
     if os.getenv('OUT') != None:
         indata = indata.replace("TARGET_OUT",os.getenv('OUT'))
     
     #处理路径中的返回上层符号
     path = path_back_previous(indata)
     #print(path)
-    if path.find('adb push') != -1:
+    if path.find('adb push') != -1 and len(inparam) == 0:
             path = adbcommend.push(path)
 
     #将目录替换为目标目录
